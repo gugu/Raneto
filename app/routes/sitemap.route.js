@@ -12,6 +12,7 @@ function route_sitemap (config) {
   return function (req, res, next) {
 
     var hostname = config.hostname || req.headers.host;
+    var scheme = config.scheme || 'http';
     var content_dir = path.normalize(config.content_dir);
 
     // get list md files
@@ -31,7 +32,7 @@ function route_sitemap (config) {
 
     // create sitemap.xml
     var sitemap = sm.createSitemap({
-      hostname: 'http://' + hostname,
+      hostname: scheme + '://' + hostname,
       cacheTime: 600000
     });
 
